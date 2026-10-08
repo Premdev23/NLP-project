@@ -1,5 +1,4 @@
 
-import pandas as pd
 import plotly.express as px
 import streamlit as st
 
@@ -82,20 +81,6 @@ def render_charts(df):
                 color="Topic",
                 barmode="stack",
                 title="Topic Coverage by Paper"
-            ),
-            width="stretch"
-        )
-
-    marks = pd.to_numeric(df["Marks"], errors="coerce").dropna()
-    if not marks.empty:
-        mark_counts = marks.value_counts().sort_index().reset_index()
-        mark_counts.columns = ["Marks", "Questions"]
-        st.plotly_chart(
-            px.bar(
-                mark_counts,
-                x="Marks",
-                y="Questions",
-                title="Marks Distribution"
             ),
             width="stretch"
         )
