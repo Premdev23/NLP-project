@@ -217,19 +217,18 @@ if df is not None and not df.empty:
     # ---------------------------
     st.header("1. 📊 Overview")
 
-    total_marks = pd.to_numeric(df["Marks"], errors="coerce").sum()
     papers = df["Paper"].nunique()
+    recognized_modules = df.loc[
+        df["Syllabus Module"].isin(set(TOPIC_MODULES.values())),
+        "Syllabus Module"
+    ].nunique()
 
-    c1, c2, c3, c4, c5, c6 = st.columns(6)
+    c1, c2, c3, c4, c5 = st.columns(5)
     c1.metric("Papers", papers)
     c2.metric("Questions", len(df))
-    c3.metric(
-        "Detected Marks",
-        int(total_marks) if pd.notna(total_marks) else 0
-    )
-    c4.metric("Topics", df["Topic"].nunique())
-    c5.metric("Syllabus Modules", df["Syllabus Module"].nunique())
-    c6.metric("Repeated Pairs", len(find_cross_paper_repeats(
+    c3.metric("Topics", df["Topic"].nunique())
+    c4.metric("Syllabus Modules", recognized_modules)
+    c5.metric("Repeated Pairs", len(find_cross_paper_repeats(
         df, st.session_state["similarity_threshold"]
     )))
 
@@ -410,7 +409,10 @@ if df is not None and not df.empty:
                 Questions=("Question", "count"),
                 Total_Marks=("Marks", lambda s: pd.to_numeric(s, errors="coerce").sum()),
                 Topics=("Topic", "nunique"),
-                Modules=("Syllabus Module", "nunique"),
+                Modules=(
+                    "Syllabus Module",
+                    lambda values: values[values.isin(set(TOPIC_MODULES.values()))].nunique()
+                ),
                 Avg_Difficulty=("Difficulty Score", "mean")
             )
             .reset_index()
@@ -482,7 +484,14 @@ if df is not None and not df.empty:
     st.header("9. 🧾 Overall Summary")
 
     top_topic = df["Topic"].value_counts().idxmax()
-    top_module = df["Syllabus Module"].value_counts().idxmax()
+    classified_modules = df.loc[
+        df["Syllabus Module"].isin(set(TOPIC_MODULES.values())),
+        "Syllabus Module"
+    ]
+    top_module = (
+        classified_modules.value_counts().idxmax()
+        if not classified_modules.empty else "No classified module yet"
+    )
     top_diff = df["Difficulty"].value_counts().idxmax()
     top_bloom = df["Bloom Level"].value_counts().idxmax()
 

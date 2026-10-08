@@ -2,21 +2,27 @@
 import plotly.express as px
 import streamlit as st
 
+from utils.topic_classifier import TOPIC_MODULES
+
 def render_charts(df):
     c1, c2 = st.columns(2)
 
-    modules = df["Syllabus Module"].value_counts().reset_index()
+    module_rows = df[df["Syllabus Module"].isin(set(TOPIC_MODULES.values()))]
+    modules = module_rows["Syllabus Module"].value_counts().reset_index()
     modules.columns = ["Syllabus Module", "Questions"]
     with c1:
-        st.plotly_chart(
-            px.bar(
-                modules,
-                x="Syllabus Module",
-                y="Questions",
-                title="Mumbai University Syllabus Module Coverage"
-            ),
-            width="stretch"
-        )
+        if modules.empty:
+            st.info("No questions are assigned to one of the six syllabus modules yet.")
+        else:
+            st.plotly_chart(
+                px.bar(
+                    modules,
+                    x="Syllabus Module",
+                    y="Questions",
+                    title="Mumbai University Syllabus Module Coverage"
+                ),
+                width="stretch"
+            )
 
     topic = df["Topic"].value_counts().reset_index()
     topic.columns = ["Topic", "Questions"]
