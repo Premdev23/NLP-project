@@ -1,0 +1,101 @@
+
+import pandas as pd
+import plotly.express as px
+import streamlit as st
+
+def render_charts(df):
+    c1, c2 = st.columns(2)
+
+    modules = df["Syllabus Module"].value_counts().reset_index()
+    modules.columns = ["Syllabus Module", "Questions"]
+    with c1:
+        st.plotly_chart(
+            px.bar(
+                modules,
+                x="Syllabus Module",
+                y="Questions",
+                title="Mumbai University Syllabus Module Coverage"
+            ),
+            width="stretch"
+        )
+
+    topic = df["Topic"].value_counts().reset_index()
+    topic.columns = ["Topic", "Questions"]
+    with c2:
+        st.plotly_chart(
+            px.bar(topic, x="Topic", y="Questions", title="NLP Topic Distribution"),
+            width="stretch"
+        )
+
+    difficulty = df["Difficulty"].value_counts().reset_index()
+    difficulty.columns = ["Difficulty", "Questions"]
+    st.plotly_chart(
+        px.pie(
+            difficulty,
+            names="Difficulty",
+            values="Questions",
+            title="Difficulty Distribution"
+        ),
+        width="stretch"
+    )
+
+    c3, c4 = st.columns(2)
+
+    with c3:
+        bloom = df["Bloom Level"].value_counts().reset_index()
+        bloom.columns = ["Bloom Level", "Questions"]
+        st.plotly_chart(
+            px.bar(
+                bloom,
+                x="Bloom Level",
+                y="Questions",
+                title="Bloom's Taxonomy"
+            ),
+            width="stretch"
+        )
+
+    with c4:
+        qtypes = df["Question Type"].value_counts().reset_index()
+        qtypes.columns = ["Question Type", "Questions"]
+        st.plotly_chart(
+            px.bar(
+                qtypes,
+                x="Question Type",
+                y="Questions",
+                title="Question Type Distribution"
+            ),
+            width="stretch"
+        )
+
+    # Cross-paper topic coverage if multiple papers were supplied
+    if df["Paper"].nunique() > 1:
+        coverage = (
+            df.groupby(["Paper", "Topic"])
+            .size()
+            .reset_index(name="Questions")
+        )
+        st.plotly_chart(
+            px.bar(
+                coverage,
+                x="Paper",
+                y="Questions",
+                color="Topic",
+                barmode="stack",
+                title="Topic Coverage by Paper"
+            ),
+            width="stretch"
+        )
+
+    marks = pd.to_numeric(df["Marks"], errors="coerce").dropna()
+    if not marks.empty:
+        mark_counts = marks.value_counts().sort_index().reset_index()
+        mark_counts.columns = ["Marks", "Questions"]
+        st.plotly_chart(
+            px.bar(
+                mark_counts,
+                x="Marks",
+                y="Questions",
+                title="Marks Distribution"
+            ),
+            width="stretch"
+        )

@@ -1,0 +1,65 @@
+question,topic,question_type,difficulty,bloom_level
+"Describe the stages of natural language processing and discuss ambiguity in language.",NLP Foundations and Ambiguity,Explain,Medium,Understand
+"Explain lexical, syntactic, and semantic ambiguity with examples.",NLP Foundations and Ambiguity,Explain,Medium,Understand
+"Discuss the challenges of processing Indian regional languages.",NLP Foundations and Ambiguity,Explain,Medium,Understand
+"Explain tokenization and compare stemming with lemmatization.",Word-Level Analysis and Morphology,Compare,Medium,Analyze
+"Differentiate inflectional and derivational morphology with examples.",Word-Level Analysis and Morphology,Compare,Medium,Analyze
+"Explain morphological parsing using a finite-state transducer.",Word-Level Analysis and Morphology,Explain,Hard,Understand
+"Describe the Porter stemming algorithm.",Word-Level Analysis and Morphology,Algorithm,Medium,Understand
+"Write a regular expression to identify dates in a sentence.",Word-Level Analysis and Morphology,Numerical,Medium,Apply
+"Explain how edit distance can correct a misspelled word.",Word-Level Analysis and Morphology,Explain,Medium,Apply
+"Calculate the probability of a sentence using a bigram language model.",Language Models and N-grams,Numerical,Medium,Apply
+"Explain why an n-gram model is sensitive to its training corpus.",Language Models and N-grams,Explain,Medium,Understand
+"Define perplexity and use it to compare two language models.",Language Models and N-grams,Numerical,Medium,Apply
+"Apply Laplace smoothing to a trigram model.",Language Models and N-grams,Numerical,Hard,Apply
+"Explain Good-Turing discounting for unseen n-grams.",Language Models and N-grams,Explain,Hard,Understand
+"Differentiate open-vocabulary and closed-vocabulary language models.",Language Models and N-grams,Compare,Medium,Analyze
+"Explain the role of a part-of-speech tag set in POS tagging.",POS Tagging and Chunking,Explain,Easy,Understand
+"Use the Viterbi algorithm to find the most likely POS tag sequence.",POS Tagging and Chunking,Algorithm,Hard,Apply
+"Compare rule-based, stochastic, and transformation-based POS taggers.",POS Tagging and Chunking,Compare,Medium,Analyze
+"Explain how a hidden Markov model is used for POS tagging.",POS Tagging and Chunking,Explain,Medium,Understand
+"Compare maximum entropy and conditional random field models for sequence labeling.",POS Tagging and Chunking,Compare,Hard,Analyze
+"Explain chunking and show how it differs from POS tagging.",POS Tagging and Chunking,Compare,Medium,Understand
+"Explain top-down and bottom-up parsing strategies.",Parsing and Syntax,Compare,Medium,Analyze
+"Construct a parse tree for a sentence using a context-free grammar.",Parsing and Syntax,Application,Medium,Apply
+"Use the CYK algorithm to determine whether a string belongs to a grammar.",Parsing and Syntax,Algorithm,Hard,Apply
+"Explain a probabilistic context-free grammar and its use in parsing.",Parsing and Syntax,Explain,Hard,Understand
+"Compare shift-reduce and predictive parsers.",Parsing and Syntax,Compare,Medium,Analyze
+"Describe the Earley parsing algorithm.",Parsing and Syntax,Algorithm,Hard,Understand
+"Explain lexical semantics and the relations between word senses.",Semantic Analysis and Word Sense,Explain,Medium,Understand
+"Differentiate homonymy and polysemy with examples.",Semantic Analysis and Word Sense,Compare,Medium,Analyze
+"Explain synonymy and hyponymy using a lexical database.",Semantic Analysis and Word Sense,Explain,Medium,Understand
+"Apply the Lesk algorithm to disambiguate a word in context.",Semantic Analysis and Word Sense,Algorithm,Hard,Apply
+"Compare supervised and unsupervised approaches to word sense disambiguation.",Semantic Analysis and Word Sense,Compare,Hard,Analyze
+"Explain distributional semantics and how a word representation is obtained.",Semantic Analysis and Word Sense,Explain,Medium,Understand
+"Explain anaphora resolution and its importance in discourse processing.",Discourse and Pragmatics,Explain,Medium,Understand
+"Apply the Hobbs algorithm to resolve a pronoun in a sentence.",Discourse and Pragmatics,Algorithm,Hard,Apply
+"Describe the centering algorithm for reference resolution.",Discourse and Pragmatics,Algorithm,Hard,Understand
+"Explain coherence and the role of context in pragmatic interpretation.",Discourse and Pragmatics,Explain,Medium,Understand
+"Differentiate discourse segmentation and coreference resolution.",Discourse and Pragmatics,Compare,Medium,Analyze
+"Calculate precision and recall for an information retrieval system.",Information Retrieval,Numerical,Medium,Apply
+"Explain TF-IDF weighting in document retrieval.",Information Retrieval,Explain,Medium,Understand
+"Compare precision, recall, and mean average precision.",Information Retrieval,Compare,Medium,Analyze
+"Explain relevance feedback in information retrieval.",Information Retrieval,Explain,Medium,Understand
+"Describe how a search engine ranks documents for a query.",Information Retrieval,Explain,Medium,Understand
+"Explain a Naive Bayes approach to sentiment analysis.",Sentiment Analysis and Text Classification,Explain,Medium,Understand
+"Design a feature-based classifier for positive and negative reviews.",Sentiment Analysis and Text Classification,Application,Hard,Create
+"Differentiate subjectivity detection and sentiment classification.",Sentiment Analysis and Text Classification,Compare,Medium,Analyze
+"Classify a review as positive or negative using a given polarity lexicon.",Sentiment Analysis and Text Classification,Numerical,Medium,Apply
+"Explain common difficulties in text classification.",Sentiment Analysis and Text Classification,Explain,Medium,Understand
+"Compare rule-based and statistical machine translation.",Machine Translation and Multilingual NLP,Compare,Medium,Analyze
+"Explain the noisy-channel view of machine translation.",Machine Translation and Multilingual NLP,Explain,Hard,Understand
+"Describe challenges in translating between English and an Indian language.",Machine Translation and Multilingual NLP,Explain,Medium,Understand
+"Explain how parallel corpora support statistical machine translation.",Machine Translation and Multilingual NLP,Explain,Medium,Understand
+"Evaluate a machine translation system using the BLEU score.",Machine Translation and Multilingual NLP,Numerical,Hard,Evaluate
+"Compare extractive and abstractive text summarization.",Summarization and Question Answering,Compare,Medium,Analyze
+"Describe the main components of a question-answering system.",Summarization and Question Answering,Explain,Medium,Understand
+"Explain how named entity recognition supports information extraction.",Information Extraction and Named Entity Recognition,Explain,Medium,Understand
+"Describe how relation extraction identifies links between named entities.",Information Extraction and Named Entity Recognition,Explain,Medium,Understand
+"Design an extractive summarizer for a collection of news articles.",Summarization and Question Answering,Application,Hard,Create
+"Explain how a question-answering system retrieves and ranks candidate answers.",Summarization and Question Answering,Explain,Hard,Understand
+"Describe an NLP application that uses a recurrent neural network.",Neural NLP and Applications,Application,Medium,Understand
+"Explain the role of an LSTM in processing a sequence of words.",Neural NLP and Applications,Explain,Medium,Understand
+"Design a chatbot that uses NLP to answer domain-specific questions.",Neural NLP and Applications,Application,Hard,Create
+"Discuss applications of NLP for Indian regional languages.",Neural NLP and Applications,Explain,Medium,Understand
+"Compare a traditional NLP pipeline with a neural NLP approach.",Neural NLP and Applications,Compare,Hard,Analyze
