@@ -25,7 +25,7 @@ streamlit run app.py
 ## What it analyzes
 
 - Extracts numbered main questions and lettered sub-questions, including common `Q.1(a)` layouts
-- Extracts selectable PDF text and uses OCR for scanned or image-only pages
+- Extracts selectable PDF text and uses OCR for full-page scans or pages whose text layer has no readable question numbering
 - Suggests syllabus topic, question type, estimated difficulty, Bloom level, and keywords
 - Summarizes question coverage by both syllabus module and topic
 - Finds close question matches within each paper and likely repeats between papers, with paper and question-number references

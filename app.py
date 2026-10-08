@@ -168,9 +168,12 @@ if analyze:
 
             if not questions:
                 st.warning(
-                    f"No questions detected in {uploaded.name}. "
-                    "If this is a scanned PDF, make sure Tesseract OCR is installed."
+                    f"Could not identify numbered questions in {uploaded.name}. "
+                    "Check that the extracted text is readable and question "
+                    "numbers were recognized. For scanned pages, check Tesseract OCR."
                 )
+                with st.expander(f"Extracted text preview: {uploaded.name}"):
+                    st.text(text[:2500] if text.strip() else "No text was extracted from this file.")
                 continue
 
             year, semester, session = infer_paper_metadata(uploaded.name)
