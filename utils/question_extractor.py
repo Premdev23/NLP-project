@@ -8,6 +8,19 @@ MAIN_Q = re.compile(
 SUB_Q = re.compile(
     r"(?im)(?:^|\s)(?:\(([a-z])\)|([a-z])[\.\)])\s*"
 )
+EXAM_INSTRUCTION_PATTERNS = [
+    re.compile(r"\bquestion\s*(?:number|no\.?)\s*\d+\s+is\s+compulsory\b", re.I),
+    re.compile(r"\battempt\s+any\s+\w+\s+questions?\s+out\s+of\b", re.I),
+    re.compile(r"\ball\s+questions?\s+carry\s+(?:equal|same)\s+marks\b", re.I),
+    re.compile(r"\bassume\s+suitable\s+data\b", re.I),
+    re.compile(r"\binstructions?\s+to\s+(?:the\s+)?candidates?\b", re.I),
+]
+
+
+def is_exam_instruction(text):
+    """Recognize common exam directions that OCR can mistake for questions."""
+    cleaned = re.sub(r"\s+", " ", str(text or "")).strip()
+    return any(pattern.search(cleaned) for pattern in EXAM_INSTRUCTION_PATTERNS)
 
 def parse_marks(text):
     patterns = [
@@ -69,6 +82,8 @@ def extract_questions(text):
 
         for sub_letter, question, marks in subparts:
             if not question:
+                continue
+            if is_exam_instruction(question):
                 continue
 
             questions.append({

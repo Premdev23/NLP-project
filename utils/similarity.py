@@ -10,6 +10,8 @@ from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from utils.question_extractor import is_exam_instruction
+
 
 _STEMMER = SnowballStemmer("english")
 _STOP_WORDS = ENGLISH_STOP_WORDS.union({
@@ -94,7 +96,10 @@ def _paper_groups(records):
 
 def find_similar_questions(df, threshold=0.78):
     """Find similar question pairs within each uploaded paper."""
-    records = df.to_dict(orient="records")
+    records = [
+        row for row in df.to_dict(orient="records")
+        if not is_exam_instruction(row.get("Question", ""))
+    ]
     if len(records) < 2:
         return []
 
@@ -111,7 +116,10 @@ def find_similar_questions(df, threshold=0.78):
 
 def find_cross_paper_repeats(df, threshold=0.78):
     """Find one-to-one best matches between each pair of different papers."""
-    records = df.to_dict(orient="records")
+    records = [
+        row for row in df.to_dict(orient="records")
+        if not is_exam_instruction(row.get("Question", ""))
+    ]
     groups = list(_paper_groups(records).values())
     if len(groups) < 2:
         return []

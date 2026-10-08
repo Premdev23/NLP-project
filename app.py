@@ -368,9 +368,16 @@ if df is not None and not df.empty:
         ])
         st.dataframe(repeated_df, width="stretch", hide_index=True)
     else:
-        st.info(
-            "Upload two or more papers to identify repeated questions across years/semesters."
-        )
+        if df["Paper"].nunique() < 2:
+            st.info(
+                "Upload two or more papers to identify repeated questions across years/semesters."
+            )
+        else:
+            st.info(
+                "No likely repeated questions were found at this threshold. "
+                "Lower the threshold to include weaker matches. Standard exam "
+                "instructions are excluded from matching."
+            )
 
     # ---------------------------
     # Topic coverage
