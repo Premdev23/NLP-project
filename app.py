@@ -504,13 +504,17 @@ if df is not None and not df.empty:
         if repeated:
             pd.DataFrame([
                 {
-                    "Paper A": a_paper,
-                    "Question A": a_q,
-                    "Paper B": b_paper,
-                    "Question B": b_q,
+                    "Paper A": question_a["Paper"],
+                    "Question A No.": _question_label(question_a),
+                    "Topic A": question_a["Topic"],
+                    "Question A": question_a["Question"],
+                    "Paper B": question_b["Paper"],
+                    "Question B No.": _question_label(question_b),
+                    "Topic B": question_b["Topic"],
+                    "Question B": question_b["Question"],
                     "Similarity": score
                 }
-                for a_paper, a_q, b_paper, b_q, score in repeated
+                for question_a, question_b, score in repeated
             ]).to_excel(writer, index=False, sheet_name="Repeated Questions")
 
     st.download_button(
